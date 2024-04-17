@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import { getCollection } from "astro:content";
+const posts = (await getCollection("blog"))
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="container mx-auto flex my-8 flex-col items-center">
+    <img
+      src="/profile_pic.jpg"
+      class="w-60 rounded-md mb-8 md:mb-0 drop-shadow-[1px_4px_12px_#15252B] dark:drop-shadow-[1px_4px_12px_#7A7A7A] [perspective:15px]"
+    />
+    <div class="text-center md:w-3/4 font-sans">
+      <span class="text-9xl block font-bold mb-4 text-foreground">
+        Hello!
+      </span>
+      <span class="text-2xl font-normal text-foreground/80">
+        I am Raghav. I am a Computer Science student and a Full Stack Web
+        Developer
+      </span>
+    </div>
+  </section>
+  <section class="container mx-auto my-16">
+    <h2 class="text-3xl font-medium mb-8">Latest blogs</h2>
+    {posts.map((post) => <PostCard post={post} />)}
+    <div class="flex justify-center">
+      <a class="button-outline" href="/blog">More Blogs</a>
+    </div>
+  </section>
+</BaseLayout>
