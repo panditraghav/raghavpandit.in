@@ -1,5 +1,8 @@
 ---
+import FormattedDate from "./FormattedDate.astro";
+import Tags from "./Tags.astro";
 const { post } = Astro.props;
+console.log(post);
 const descriptionSplit = post.data.description.split(" ");
 ---
 
@@ -19,7 +22,10 @@ const descriptionSplit = post.data.description.split(" ");
         {post.data.title}
       </a>
     </div>
-    <div></div>
+    <div class="text-foreground/80">
+      <FormattedDate date={post.data.pubDate} />
+    </div>
+    <Tags class="text-foreground/80" tags={post.data.tags} />
     <div class="text-foreground/80 my-2">
       {descriptionSplit.slice(0, 20).join(" ")}{" "}
       {descriptionSplit.length > 20 ? "..." : ""}

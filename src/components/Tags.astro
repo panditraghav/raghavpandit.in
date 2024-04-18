@@ -1,0 +1,11 @@
+---
+const { tags, class: className } = Astro.props;
+---
+
+<div class={"flex gap-x-2" + className ? className : ""}>
+  {
+    tags.map((tag: string) => {
+      return <span>#{tag}</span>;
+    })
+  }
+</div>
