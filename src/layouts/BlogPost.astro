@@ -11,16 +11,22 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <BaseLayout pageTitle={title} pageDescription={description}>
   <main>
     <article class="custom-container">
-      <div class="hero-image">
+      <div class="my-4">
         {
           heroImage && (
-            <img width={1020} height={510} src={heroImage} alt={title} />
+            <img
+              class="rounded-md"
+              width={1020}
+              height={510}
+              src={heroImage}
+              alt={title}
+            />
           )
         }
       </div>
       <div class="prose lg:prose-xl prose-neutral dark:prose-invert max-w-none">
         <div class="title">
-          <div class="date">
+          <div class="not-prose text-base">
             <FormattedDate date={pubDate} />
             {
               updatedDate && (
